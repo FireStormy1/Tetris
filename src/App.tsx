@@ -6,7 +6,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import NotFound from '@/pages/not-found';
 import { Link, Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Download, ExternalLink, Pause, Play as PlayIcon, RotateCcw, Share2 } from 'lucide-react';
-import developerPortrait from '@assets/Picture.jpeg';
+const developerPortrait = '/Picture.jpeg';
 
 const queryClient = new QueryClient();
 type Difficulty = 'Easy' | 'Normal' | 'Hard';
