@@ -196,7 +196,14 @@ a { color: inherit; text-decoration: none; }
   .home-index { grid-template-columns: 1fr; gap: 0; }.index-item { border-right: 0; border-bottom: 1px solid var(--line); padding: 20px 0; min-height: 0; }
   .difficulty-grid { grid-template-columns: 1fr; }.difficulty-card { min-height: 190px; }
   .game-shell .main { width: min(100% - 24px, 500px); height: calc(100dvh - 68px); }.game-viewport { padding: 10px 0 max(10px, env(safe-area-inset-bottom)); }.game-top { align-items: center; margin-bottom: 8px; }.game-top h1 { font-size: 28px; margin-top: 5px; }.game-top .button { display: inline-flex; }
-  .game-layout { display: flex; flex-direction: column; justify-content: flex-start; gap: 8px; overflow: hidden; }.stats-stack { order: -1; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "primary next" "level actions"; gap: 6px 8px; width: 100%; }.stats-primary { grid-area: primary; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }.stats-stack .next-card { grid-area: next; }.stats-stack .level-card { grid-area: level; }.stats-stack .game-actions { grid-area: actions; margin-top: 0; }.stat-card { padding: 7px 9px; }.stat-card label { margin-bottom: 3px; }.stat-card strong { font-size: 17px; }.next-box { width: 72px; height: 54px; border-width: 4px; padding: 5px; gap: 2px; margin-top: 3px; }.game-actions { display: flex; gap: 6px; }.game-actions .button { padding: 8px 10px; }.board-frame { height: min(calc(100dvh - 420px), 420px); padding: 8px; }.board-overlay { inset: 8px; }.touch-controls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 8px; width: min(210px, 70vw); flex: 0 0 auto; }.touch-controls button { min-height: 42px; font: 16px var(--app-font-mono); background: var(--paper-deep); border: 1px solid var(--line); color: var(--ink); touch-action: manipulation; }.touch-controls button:active { background: var(--coral); color: var(--cream); transform: translateY(1px); }.touch-controls button:nth-child(1) { grid-column: 2; }.touch-controls button:nth-child(2) { grid-column: 1; grid-row: 2; }.touch-controls button:nth-child(3) { grid-column: 2; grid-row: 2; }.touch-controls button:nth-child(4) { grid-column: 3; grid-row: 2; }
+  .game-layout { display: flex; flex-direction: column; justify-content: flex-start; gap: 8px; overflow: hidden; }.stats-stack { order: -1; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "primary next" "level actions"; gap: 6px 8px; width: 100%; }.stats-primary { grid-area: primary; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }.stats-stack .next-card { grid-area: next; }.stats-stack .level-card { grid-area: level; }.stats-stack .game-actions { grid-area: actions; margin-top: 0; }.stat-card { padding: 7px 9px; }.stat-card label { margin-bottom: 3px; }.stat-card strong { font-size: 17px; }.next-box { width: 72px; height: 54px; border-width: 4px; padding: 5px; gap: 2px; margin-top: 3px; }.game-actions { display: flex; gap: 6px; }.game-actions .button { padding: 8px 10px; }.board-frame { height: min(calc(100dvh - 420px), 420px); padding: 8px; }.board-overlay { inset: 8px; }  .touch-controls { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 8px; width: min(320px, calc(100vw - 24px)); max-width: calc(100vw - 24px); margin-left: auto; margin-right: auto; flex: 0 0 auto; }
+  .touch-controls-top, .touch-controls-bottom { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; }
+  .touch-controls-top { margin-bottom: 2px; }
+  .touch-controls button { min-height: 42px; font: 16px var(--app-font-mono); background: var(--paper-deep); border: 1px solid var(--line); color: var(--ink); touch-action: manipulation; }
+  .touch-controls button:active { background: var(--coral); color: var(--cream); transform: translateY(1px); }
+  .touch-controls-top > button { flex: 0 0 74px; min-width: 74px; padding: 0 10px; font-size: 13px; }
+  .touch-controls-top [data-testid="touch-rotate"] { flex: 0 0 44px; min-width: 44px; padding: 0; display: inline-flex; justify-content: center; align-items: center; }
+  .touch-controls-bottom > button { flex: 0 0 56px; min-width: 56px; padding: 0 8px; }
   .result-overlay { padding: 12px; }.result-card { padding: 20px 15px; }.result-card h2 { font-size: 32px; }
 }
 @media (max-width: 440px) {
@@ -297,21 +304,28 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* Mobile-only layout adjustments for touch controls.
-   Preserve overall control group centered layout; make the Sudden Drop
-   button span the full control width on small screens so it is never clipped.
+   Preserve the centered two-row layout so the controls remain stacked
+   as separate top and bottom rows on narrow screens.
 */
 @media (max-width: 600px) {
   .touch-controls {
-    width: min(210px, 70vw);
+   width: min(320px, calc(100vw - 24px));
     max-width: calc(100vw - 24px);
     box-sizing: border-box;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    margin-top: 8px;
+   margin: 8px auto 0;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 8px;
     touch-action: manipulation;
   }
 
-  .touch-controls button { box-sizing: border-box; }
+  .touch-controls-top,
+  .touch-controls-bottom {
+   width: 100%;
+  }
+
+  .touch-controls button {
+   box-sizing: border-box;
+  }
 }
