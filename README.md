@@ -245,7 +245,7 @@ B.Tech CSE Student passionate about software development, problem solving, and b
 
 ### GitHub
 
-👉 **[FireStormy1](https://github.com/FireStormy1)**
+👉 **[Saswat Dixit](https://github.com/saswatdixit)**
 
 ### LinkedIn
 
